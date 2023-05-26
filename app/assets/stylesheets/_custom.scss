@@ -1,0 +1,32 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+    line-height: 1.4;
+    font-family: 'Open Sans', sans-serif;
+    // font-size: 15px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+    font-size: 45px !important;
+}
+
+.home-callout > h1 > span {
+    font-family: monospace;
+}
+
+.main-profile-section {
+    margin: 3rem 0;
+}
+// input.form-control {
+//     border: 0;
+//     outline: none;
+//     &:hover,&:focus {
+//         box-shadow: none;
+//     }
+// }
