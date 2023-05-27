@@ -10,6 +10,15 @@ class User < ApplicationRecord
 
   before_save :set_display_name, if: -> { display_name.blank? }
 
+  has_one_attached :avatar do |attachable|
+    attachable.variant :display, resize_to_limit: [150, 150]
+  end
+
+  validates :avatar,   content_type: { in: %w[image/jpeg image/png],
+                                      message: "must be a valid image format" },
+                      size: { less_than: 2.megabytes,
+                              message:   "should be less than 2MB" }
+
   private
 
   # Converts username to all lowercase.

@@ -20,12 +20,6 @@ class UsernamesController < ApplicationController
                                                                         current_user.errors.full_messages.join(", ")
                                                                     end
                                                                      }
-                # format.turbo_stream { flash.now[:notice] = if username_params[:username].blank?
-                #                     "Please set a username"
-                #                 else
-                #                     current_user.errors.full_messages.join(", ")
-                #                 end
-                #             }
             end
         end
     end
@@ -33,6 +27,6 @@ class UsernamesController < ApplicationController
     private
 
     def username_params
-        params.require(:user).permit(:username, :display_name)
+        params.require(:user).permit(:username, :display_name, :avatar)
     end
 end
