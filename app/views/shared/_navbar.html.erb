@@ -20,11 +20,11 @@
             <ul class="navbar-nav mb-2 mb-lg">
                 <li class="nav-item dropdown">
                     <a class="nav-link fw-bold text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <%# if !current_user.username.blank? %>
-                        <%#= current_user.username %>
-                      <%# else %>
-                      <%# end %>
-                      <%= current_user.email %>
+                      <% if !current_user.username.blank? %>
+                        <%= current_user.username %>
+                      <% else %>
+                        <%= current_user.email %>
+                      <% end %>
                       <%= image_tag 'menu.png', width: "22" %>
                     </a>
                     <ul class="dropdown-menu rounded-0 p-0">
