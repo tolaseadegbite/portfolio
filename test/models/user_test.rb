@@ -25,4 +25,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+  test "should set display name to username if display name isn't present" do
+    @user.username = "lashe"
+    @user.display_name = ""
+    @user.save
+    assert_equal @user.username.humanize, @user.display_name
+  end
+
 end

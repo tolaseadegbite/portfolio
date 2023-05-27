@@ -8,12 +8,16 @@ class User < ApplicationRecord
 
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 
-  
+  before_save :set_display_name, if: -> { display_name.blank? }
 
   private
 
   # Converts username to all lowercase.
   def downcase_username
     self.username.downcase!
+  end
+
+  def set_display_name
+    self.display_name = username.humanize
   end
 end
