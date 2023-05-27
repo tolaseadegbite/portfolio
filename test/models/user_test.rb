@@ -10,6 +10,16 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
+  test "length must not be more than 15" do
+    @user.username = "a" * 16
+    assert_not @user.valid?
+  end
+
+  test "username length must not be less that 3" do
+    @user.username = "a" * 2
+    assert_not @user.valid?
+  end
+
   # test "usernames should be lowcase" do
   #   mixed_case_username = "tOlASe"
   #   @user.username = mixed_case_username

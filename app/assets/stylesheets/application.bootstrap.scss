@@ -1,2 +1,10 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300&family=Ubuntu:wght@300;500&display=swap');
+
+@import 'custom';
+@import 'config/animations';
+@import 'config/variables';
+@import 'components/flash';
+@import 'components/navbar';

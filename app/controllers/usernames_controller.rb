@@ -8,15 +8,25 @@ class UsernamesController < ApplicationController
 
     def update
         if username_params[:username].present? && current_user.update(username_params)
-            flash[:notice] = "Username successfully updated"
-            redirect_to root_url
-        else
-            flash[:notice] = if username_params[:username].blank?
-                "Please set a username"
-            else
-                current_user.errors.full_messages.join(", ")
+            respond_to do |format|
+                format.html { redirect_to root_url, notice: "Username successfully updated." }
+                # format.turbo_stream { flash.now[:notice] = "Username successfully updated." }
             end
-            render 'usernames/new', status: :unprocessable_entity
+        else
+            respond_to do |format|
+                format.html { redirect_to new_username_url, notice: if username_params[:username].blank? 
+                                                                        "Please set a username"
+                                                                    else
+                                                                        current_user.errors.full_messages.join(", ")
+                                                                    end
+                                                                     }
+                # format.turbo_stream { flash.now[:notice] = if username_params[:username].blank?
+                #                     "Please set a username"
+                #                 else
+                #                     current_user.errors.full_messages.join(", ")
+                #                 end
+                #             }
+            end
         end
     end
 
