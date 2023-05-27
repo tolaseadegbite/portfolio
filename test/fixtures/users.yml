@@ -1,6 +1,21 @@
 tolase:
-    email: tolase@example.com
-    # username: ""
-kelvin:
-    email: kelvin@example.com
-    # username: ""
+  display_name: Michael Example
+  email: michael@example.com
+
+archer:
+  display_name: Sterling Archer
+  email: duchess@example.gov
+
+lana:
+  display_name: Lana Kane
+  email: hands@example.gov
+
+malory:
+  display_name: Malory Archer
+  email: boss@example.gov
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  display_name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+<% end %>

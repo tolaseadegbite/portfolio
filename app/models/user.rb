@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 15, minimum: 3 }, allow_blank: true
+  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 25, minimum: 3 }, allow_blank: true
 
   before_save :set_display_name, if: -> { display_name.blank? }
 
@@ -18,6 +18,8 @@ class User < ApplicationRecord
                                       message: "must be a valid image format" },
                       size: { less_than: 2.megabytes,
                               message:   "should be less than 2MB" }
+
+  has_many :projects, dependent: :destroy
 
   private
 

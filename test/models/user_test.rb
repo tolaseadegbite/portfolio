@@ -3,15 +3,15 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.new(username: "", email: "lashe@foobar.com", password: "foobar", password_confirmation: "foobar")
+    @user = User.new(username: "tolase", email: "lashe@foobar.com", password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid" do
     assert @user.valid?
   end
 
-  test "length must not be more than 15" do
-    @user.username = "a" * 16
+  test "username length must not be more than 25" do
+    @user.username = "a" * 26
     assert_not @user.valid?
   end
 
@@ -40,6 +40,14 @@ class UserTest < ActiveSupport::TestCase
     @user.display_name = ""
     @user.save
     assert_equal @user.username.humanize, @user.display_name
+  end
+
+  test "associated project should be destroyed" do
+    @user.save
+    @user.projects.create!(title: "project one", description: "amazing one", github_link: "https://example.com")
+    assert_difference 'Project.count', -1 do
+      @user.destroy
+    end
   end
 
 end
