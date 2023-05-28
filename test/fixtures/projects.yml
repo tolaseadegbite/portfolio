@@ -1,26 +1,36 @@
 orange:
+  title: "An awesome project"
   description: "I just ate an orange!"
+  github_link: "https://example.com"
   created_at: <%= 10.minutes.ago %>
   user: tolase
 
 tau_manifesto:
+  title: "An awesome project"
   description: "Check out the @tauday site by @mhartl: https://tauday.com"
+  github_link: "https://example.com"
   created_at: <%= 3.years.ago %>
   user: tolase
 
 cat_video:
+  title: "An awesome project"
   description: "Sad cats are sad: https://youtu.be/PKffm2uI4dk"
+  github_link: "https://example.com"
   created_at: <%= 2.hours.ago %>
   user: tolase
 
 most_recent:
+  title: "An awesome project"
   description: "Writing a short test"
+  github_link: "https://example.com"
   created_at: <%= Time.zone.now %>
   user: tolase
 
 <% 30.times do |n| %>
 micropost_<%= n %>:
-  description: <%= Faker::Lorem.sentence(word_count: 5) %>
+  title: <%= Faker::Lorem.sentence(word_count: 5) %>
+  description: <%= Faker::Lorem.sentence(word_count: 100) %>
+  github_link: "https://example.com"
   created_at: <%= 42.days.ago %>
   user: tolase
 <% end %>

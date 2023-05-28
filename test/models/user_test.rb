@@ -36,8 +36,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should set display name to username if display name isn't present" do
-    @user.username = "lashe"
-    @user.display_name = ""
     @user.save
     assert_equal @user.username.humanize, @user.display_name
   end

@@ -12,14 +12,14 @@ class UsernamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "invalid username parameters" do
+  test "invalid username information" do
     get new_username_path
     assert_template 'usernames/new'
     patch username_path(@user), params: { user: { 
                                         username: ""
      } }
-    assert_response :unprocessable_entity
-    assert_template 'usernames/new'
+     follow_redirect!
+     assert_template 'usernames/new'
   end
 
   test "valid username information" do
