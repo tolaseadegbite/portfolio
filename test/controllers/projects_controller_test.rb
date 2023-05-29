@@ -75,4 +75,13 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to projects_url
     assert_not flash.empty?
   end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    sign_in @other_user
+    assert_no_difference "Project.count" do
+      delete project_path(@project)
+    end
+    assert_redirected_to projects_url
+    assert_not flash.empty?
+  end
 end

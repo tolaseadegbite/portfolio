@@ -36,8 +36,8 @@
             <% end %>
         </div>
         <span>
-            <%= link_to "Github link", @project.github_link, class: "btn btn-dark btn-sm rounded-pill mt-2 mb-3" %>
-            <%= link_to "Preview link", @project.preview_link, class: "btn btn-light border btn-sm rounded-pill mt-2 mb-3" if @project.preview_link.present? %>
+            <%= link_to "Github link", @project.github_link, target: "_blank", class: "btn btn-dark rounded-pill mt-2 mb-3" %>
+            <%= link_to "Preview link", @project.preview_link, target: "_blank", class: "btn btn-light border rounded-pill mt-2 mb-3" if @project.preview_link.present? %>
         </span>
         <p class="text-justify"><%= simple_format(@project.description) %></p>
     </div>

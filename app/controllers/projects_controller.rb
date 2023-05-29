@@ -56,6 +56,6 @@ class ProjectsController < ApplicationController
         # confirms the correct user
         def correct_user
             @project ||= Project.find(params[:id])
-            redirect_to(projects_url, status: :see_other, notice: "Access denied") unless current_user == @project.user
+            redirect_to(projects_url, status: :see_other, notice: "Access denied") unless current_user.admin?
         end
 end

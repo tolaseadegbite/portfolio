@@ -2,6 +2,7 @@ tolase:
   username: lashe
   display_name: Tolase Adegbite
   email: michael@example.com
+  admin: true
 
 archer:
   username: arca
