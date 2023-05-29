@@ -1,0 +1,15 @@
+<div class="container py-5 text-center">
+    <h1 class="mb-3"><%= @project.title %></h1>
+    <div class="project-img mb-3">
+        <% if @project.image.attached? %>
+            <%= image_tag @project.image, class: "img-fluid" %>
+        <% else %>
+            <%= image_tag 'default-webpage.jpg', class: "img-fluid" %>
+        <% end %>
+    </div>
+    <span>
+        <%= link_to "Github link", @project.github_link, class: "btn btn-dark btn-sm rounded-pill mt-2 mb-3" %>
+        <%= link_to "Preview link", @project.preview_link, class: "btn btn-light border btn-sm rounded-pill mt-2 mb-3" if @project.preview_link.present? %>
+    </span>
+    <p><%= simple_format(@project.description) %></p>
+</div>

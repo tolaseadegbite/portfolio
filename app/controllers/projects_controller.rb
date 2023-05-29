@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
         @project = current_user.projects.build(project_params)
         if @project.save
             
-            redirect_to projects_url, notice: 'Project was successfully created'
+            redirect_to @project, notice: 'Project was successfully created'
         else
             render 'new', status: :unprocessable_entity, notice: current_user.errors.full_messages.join(", ")
         end
