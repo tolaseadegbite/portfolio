@@ -9,7 +9,7 @@
     </div>
     <div class="project text-center">
         <h1 class="mb-3"><%= @project.title %></h1>
-        <p class="text-muted">Posted <%= time_ago_in_words(@project.created_at) %></p>
+        <p class="text-muted">Posted by <%= link_to @project.user.username, '#', class: "text-muted text-decoration-none" %>, <%= time_ago_in_words(@project.created_at) %> | <%= link_to "Edit", edit_project_path(@project), class: "text-dark text-decoration-none text-muted" unless @project_user == current_user %></p>
         <div class="project-img mb-3">
             <% if @project.image.attached? %>
                 <%= image_tag @project.image, class: "img-fluid" %>
