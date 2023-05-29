@@ -13,6 +13,7 @@ User.create!(display_name:  "Tolase Kelvin",
 99.times do |n|
   display_name  = Faker::Name.name
   username  = Faker::Internet.username
+  username = "#{username}_#{n}"
   email = "example-#{n+1}@lashe.dev"
   password = "password"
   User.create!(display_name:  display_name,
@@ -25,17 +26,12 @@ User.create!(display_name:  "Tolase Kelvin",
             )
 end
 
-# Generate microposts for a subset of users.
-# users = User.order(:created_at).take(6)
-# 50.times do
-#   content = Faker::Lorem.sentence(word_count: 5)
-#   users.each { |user| user.microposts.create!(content: content) }
-# end
-
-# Create following relationships.
-# users = User.all
-# user  = users.first
-# following = users[2..50]
-# followers = users[3..40]
-# following.each { |followed| user.follow(followed) }
-# followers.each { |follower| follower.follow(user) }
+# Generate projects for a subset of users.
+user = User.first
+50.times do
+  title = Faker::Lorem.sentence(word_count: 4)
+  description = Faker::Lorem.sentence(word_count: 100)
+  github_link = Faker::Internet.url
+  preview_link = Faker::Internet.url
+  user.projects.create!(title: title, description: description, github_link: github_link, preview_link: preview_link)
+end

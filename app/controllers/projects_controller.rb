@@ -38,7 +38,9 @@ class ProjectsController < ApplicationController
     end
 
     def destroy
-        
+        @project.destroy
+        flash[:notice] = "Project deleted successfully"
+        redirect_to projects_url
     end
 
     private

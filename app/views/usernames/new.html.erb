@@ -1,4 +1,9 @@
 <div class="container py-5", style="max-width: 540px">
+    <%= link_to :back, class: "text-dark" do %>
+        <span><i class="bi bi-arrow-left fs-1"></i></span>
+        <%# <span class="back">back</span> %>
+    <% end %>
+    
     <h2>Set your username</h2>
     <%= form_with model: current_user, local: true, url: username_path(current_user) do |f|  %>
         <div class="mb-3">
