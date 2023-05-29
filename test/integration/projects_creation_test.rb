@@ -20,14 +20,17 @@ class ProjectsCreationTest < ActionDispatch::IntegrationTest
 
   test "create with valid information" do
     sign_in @user
+    description = "My nice project"
+    github_link = "https://www.example.com"
     assert_difference 'Project.count', 1 do
-      post projects_path, params: { project: { title: "My nice project",
-                                                github_link: "https://www.example.com",
-                                                description: "What a nice project" } }
+      post projects_path, params: { project: { title: "My project",
+                                                github_link: github_link,
+                                                description: description } }
     end
     follow_redirect!
     assert_template 'projects/show'
     assert_not flash.empty?
-    
+    assert_match description, response.body
+    assert_match github_link, response.body
   end
 end

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     before_action :correct_user, only: %i[ edit update destroy ]
 
     def index
-        @projects = Project.order(created_at: :desc) 
+        @projects = Project.includes(:user, image_attachment: :blob).order(created_at: :desc) 
     end
 
     def new

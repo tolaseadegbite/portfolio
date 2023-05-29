@@ -1,4 +1,123 @@
 <% provide(:title, "Home") %>
 
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="container main-wrapper">
+    <section class="row align-items-center main-profile-section py-3">
+        <div class="col-md-4">
+            <div class="main-img text-end">
+                <%= image_tag 'user.jpg', class: "img-fluid" %>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="home-callout">
+                <h1>Hi there &#128512;, I am Tolase Kelvin, </h1>
+                <h1>a <span class="main-job-role bg-dark text-light">Junior Ruby on Rails Developer</span></h1>
+                <p class="w-75">I am a positive, enthusiastic and competent Web Developer who, over the years, has built up a diverse range of skills, qualities and attributes that guarantee I will perform highly in this role.</p>
+            </div>
+            <div class="wrapper-contact mt-3">
+                <%= link_to "Contact me", '#', class: "btn btn-light border-dark me-2" %>
+                <%= link_to "Check my work", '#', class: "btn btn-dark" %>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects py-3 main-profile-section">
+        <div class="projects-meta text-center">
+            <h2>Projects</h2>
+            <p class="text-center me-auto">I have worked over the months on different levels of rails projects. The experienced acquired from these has equipped me with enough knowledge to take on any rails app.</p>
+        </div>
+            <div class="row">
+                <div class="col-md-4 pb-3">
+                    <%= @projects.find_each do |project| %>
+                        <div class="project-card border border-dark rounded pb-3">
+                            <div class="project-img mb-3">
+                                <% if project.image.attached? %>
+                                    <%= link_to project do %>
+                                        <%= image_tag project.image, class: "img-fluid" %>
+                                    <% end %>
+                                <% else %>
+                                    <%= image_tag 'default-webpage.jpg', class: "img-fluid" %>
+                                <% end %>
+                            </div>
+                            <div class="card-body px-3">
+                                <h5 class="project-title"><%= link_to project.title, project, class: "text-dark text-decoration-none" %></h5>
+                                <div class="project-tags">
+                                    <%= link_to "HTML", '#', class: "btn btn-light btn-sm text-sm" %>
+                                    <%= link_to "CSS", '#', class: "btn btn-light btn-sm" %>
+                                    <%= link_to "JavaScript", '#', class: "btn btn-light btn-sm" %>
+                                </div>
+                                <p class="project-copy text-sm text-justify"><%= project.description.truncate(100) %></p>
+                                <div class="mt-3">
+                                    <% if project.preview_link.present? %>
+                                        <%= link_to project.preview_link, class: "btn btn-light border-dark me-2 btn-sm" do %>
+                                            <i class="bi bi-box-arrow-up-right"></i>
+                                            Preview
+                                        <% end %>
+                                    <% end %>
+                                    <%= link_to project.github_link, class: "btn btn-dark me-2 btn-sm" do %>
+                                        <i class="bi bi-github"></i>
+                                        Github
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+    </section>
+
+    <section class="blog py-3 main-profile-section text-center">
+        <div class="d-flex justify-content-between">
+            <h2 class="main-articles mb-4">Latest Posts</h2>
+            <p><%= link_to "See all", '#', class: "btn btn-light border" %></p>
+        </div>
+        <div class="row main-articles-col">
+            <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                <div class="d-flex justify-content-between">
+                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
+                    <p class="single-post">February 15, 2023</p>
+                </div>
+            <% end %>
+            <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                <div class="d-flex justify-content-between">
+                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
+                    <p class="single-post">February 15, 2023</p>
+                </div>
+            <% end %>
+            <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                <div class="d-flex justify-content-between">
+                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
+                    <p class="single-post">February 15, 2023</p>
+                </div>
+            <% end %>
+            <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                <div class="d-flex justify-content-between">
+                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
+                    <p class="single-post">February 15, 2023</p>
+                </div>
+            <% end %>
+            <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                <div class="d-flex justify-content-between">
+                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
+                    <p class="single-post">February 15, 2023</p>
+                </div>
+            <% end %>
+        </div>
+    </section>
+
+    <section class="contact py-3 main-profile-section text-center">
+        <h2 class="main-articles text-center mb-4">Contact me</h2>
+        <div class="row main-articles-col">
+            <p class="contact">You can connect with me me via <a href="mailto:tolasekelvin@gmail.com" class="text-decoration-none btn btn-dark">email <i class="bi bi-envelope-at-fill"></i></a></p> 
+            <p>or through my social handles</p> 
+            <p>
+                <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                    <i class="bi bi-twitter"></i>
+                <% end %>
+                <%= link_to '#', class: "text-dark text-decoration-none" do %>
+                    <i class="bi bi-linkedin"></i>
+                <% end %>
+            </p>
+        </div>
+    </section>
+</div>
