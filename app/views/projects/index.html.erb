@@ -1,3 +1,5 @@
+<% provide(:title, "My projects") %>
+
 <div class="container py-5 text-center">
     <%= link_to "New project", new_project_path, class: "btn btn-dark rounded-pill mb-3" %>
     <div class="project-copy">
@@ -8,4 +10,6 @@
     <div class="row">
         <%= render @projects %>
     </div>
+
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: projects_path(format: :turbo_stream) %>
 </div>
