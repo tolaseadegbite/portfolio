@@ -5,11 +5,6 @@ class ProjectsController < ApplicationController
 
     def index
         @projects = Project.includes(:user, image_attachment: :blob).order(created_at: :desc)
-        @pagy, @projects = pagy(@projects, items: 6) 
-        respond_to do |format|
-            format.html
-            format.turbo_stream
-        end
     end
 
     def new

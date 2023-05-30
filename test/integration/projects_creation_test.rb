@@ -7,7 +7,7 @@ class ProjectsCreationTest < ActionDispatch::IntegrationTest
     @project = projects(:orange)
   end
 
-  test "create with invalid information" do
+  test "create project with invalid information" do
     sign_in @user
     assert_no_difference 'Project.count' do
       post projects_path, params: { project: { title: "",
