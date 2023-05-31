@@ -7,7 +7,9 @@
         <p class="text-muted">I have worked over the months on different levels of rails projects. The experienced acquired from these has equipped me with enough knowledge totake on any rails app.</p>
     </div>
 
-    <div class="row">
+    <div id="projects" class="row">
         <%= render @projects %>
     </div>
-</div>-
+
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: projects_path(format: :turbo_streams) %>
+</div>
