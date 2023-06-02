@@ -4,12 +4,12 @@ class ProjectsController < ApplicationController
     before_action :correct_user, only: %i[ edit update destroy ]
 
     def index
-        @projects = Project.includes(:user, image_attachment: :blob).order(created_at: :desc)
-        @pagy, @projects = pagy_countless(@projects, items: 6)
-        respond_to do |format|
-            format.html
-            format.turbo_stream
-        end
+        @projects = Project.includes(:user, image_attachment: :blob).paginate(page: params[:page]).order(created_at: :desc)
+        # @pagy, @projects = pagy_countless(@projects, items: 6)
+        # respond_to do |format|
+        #     format.html
+        #     format.turbo_stream
+        # end
     end
 
     def new

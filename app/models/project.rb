@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :user
 
+  self.per_page = 6
+
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end

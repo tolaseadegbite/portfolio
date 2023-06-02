@@ -11,5 +11,7 @@
         <%= render @projects %>
     </div>
 
-    <%= turbo_frame_tag :pagination, loading: :lazy, src: projects_path(format: :turbo_streams) %>
+    <div class="text-center mt-2">
+        <%= will_paginate(@projects) %>
+    </div>
 </div>

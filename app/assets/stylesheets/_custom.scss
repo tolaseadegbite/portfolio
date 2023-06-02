@@ -23,6 +23,32 @@ h1 {
 .main-profile-section {
     margin: 3rem 0;
 }
+
+.pagination {
+    justify-content: center;
+    li {
+        // padding: 10px;
+        border: 1px solid #000;
+        a {
+            padding: 10px;
+            color: #000;
+            text-decoration: none;
+            &:hover, &:focus {
+                background-color: #000;
+                color: #fff;
+            }
+        }
+        
+    }
+}
+
+li.active {
+    background-color: #000;
+    color: #fff;
+    a {
+        color: #fff;
+    }
+}
 // input.form-control {
 //     border: 0;
 //     outline: none;
