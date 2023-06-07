@@ -1,0 +1,9 @@
+like_one:
+  user: tolase
+  likeable: orange
+  likeable_type: orange
+
+like_two:
+  user: tolase
+  likeable: tau_manifesto
+  likeable_type: tau_manifesto
