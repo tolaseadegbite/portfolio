@@ -4,8 +4,5 @@ Rails.application.routes.draw do
 
   resources :usernames, only: [:new, :update]
   resources :projects
-    # collection do
-    #   post :index
-    # end
-  # end
+  resources :likes, only: [:create, :destroy]
 end

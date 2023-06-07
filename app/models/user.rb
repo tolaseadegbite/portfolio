@@ -20,6 +20,7 @@ class User < ApplicationRecord
                               message:   "should be less than 2MB" }
 
   has_many :projects, dependent: :destroy
+  has_many :likes
 
   private
 

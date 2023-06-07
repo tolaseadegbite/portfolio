@@ -40,5 +40,6 @@
             <%= link_to "Preview link", @project.preview_link, target: "_blank", class: "btn btn-light border rounded-pill mt-2 mb-3" if @project.preview_link.present? %>
         </span>
         <p class="text-justify"><%= simple_format(@project.description) %></p>
+        <%= render partial: "likes/button", locals: { likeable: @post } %>
     </div>
 </div>
