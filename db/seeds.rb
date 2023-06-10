@@ -4,7 +4,7 @@ User.create!(display_name:  "Tolase Kelvin",
              email: "lashe@lashe.dev",
              password:              "foobar",
              password_confirmation: "foobar",
-            #  admin:     true,
+             admin:     true,
             #  activated: true,
             #  activated_at: Time.zone.now
             )
