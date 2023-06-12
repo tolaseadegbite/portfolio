@@ -13,9 +13,9 @@
         </div>
         <h5 class="project-title"><%= link_to project.title, project, class: "text-dark text-decoration-none" %></h5>
         <div class="project-tags">
-            <%= link_to "HTML", '#', class: "btn btn-light btn-sm text-sm" %>
-            <%= link_to "CSS", '#', class: "btn btn-light btn-sm" %>
-            <%= link_to "JavaScript", '#', class: "btn btn-light btn-sm" %>
+            <% project.tags.each do |tag| %>
+                <%= link_to tag.name, tag, class: "btn btn-light btn-sm text-sm border" %>
+            <% end %>
         </div>
         <p class="project-copy text-sm text-justify"><%= project.description.truncate(100) %></p>
         <div class="mt-3">

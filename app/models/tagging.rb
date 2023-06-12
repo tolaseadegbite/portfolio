@@ -1,5 +1,4 @@
 class Tagging < ApplicationRecord
-  belongs_to :tag
-  belongs_to :project
-  belongs_to :taggable, polymorphic: true
+    belongs_to :taggable, polymorphic: true
+    belongs_to :tag
 end

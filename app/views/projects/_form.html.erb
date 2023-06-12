@@ -39,6 +39,13 @@
     </div>
 
     <div class="mb-3">
+        <h5><%= f.label :tags, class: "form-label" %></h5>
+        <%#= f.select :tag_ids, Tag.pluck(:name, :id), {},{ multiple: true} %>
+        <%#= f.text_field :tags, value: @project.tags.map(&:name).join(","), class: "form-control" %>
+        <%= f.select :tag_ids, Tag.where(category: "project").pluck(:name, :id), {}, { multiple: true } %>
+    </div>
+
+    <div class="mb-3">
         <%= f.submit "Submit project", class: "btn btn-dark rounded-pill" %>
     </div>
 <% end %>

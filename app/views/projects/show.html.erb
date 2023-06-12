@@ -7,6 +7,7 @@
             <%# <span class="back">back</span> %>
         <% end %>
 
+        <%= link_to "New project", new_project_path, class: "btn btn-dark rounded-pill mb-3 " %>
         <span class="dropdown">
             <% if user_signed_in? && @project.user == current_user %>
                 <div style="cursor:pointer;" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,6 +28,11 @@
     </div>
     <div class="project text-center">
         <h1 class="mb-3"><%= @project.title %></h1>
+        <div class="project-tags">
+            <% @project.tags.each do |tag| %>
+                <%= link_to tag.name, tag, class: "btn btn-light btn-sm border text-sm" %>
+            <% end %>
+        </div>
         <p class="text-muted">Posted by <%= link_to @project.user.username, '#', class: "text-muted text-decoration-none" %>, <%= time_ago_in_words(@project.created_at) %>
         <div class="project-img mb-3">
             <% if @project.image.attached? %>

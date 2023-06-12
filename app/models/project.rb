@@ -5,8 +5,8 @@ class Project < ApplicationRecord
 
   has_many :likes, as: :likeable
 
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
-  has_many :taggings, as: :taggable
 
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
