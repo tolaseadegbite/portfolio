@@ -1,5 +1,8 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :correct_user, only: %i[ edit update destroy ]
+  before_action :correct_create_user, only: %i[ create new ]
 
   # GET /tags or /tags.json
   def index
@@ -22,6 +25,7 @@ class TagsController < ApplicationController
   # POST /tags or /tags.json
   def create
     @tag = Tag.new(tag_params)
+    # redirect_to(root_url, status: :see_other, notice: "Access denied") unless current_user && current_user.admin?
 
     respond_to do |format|
       if @tag.save
@@ -66,5 +70,16 @@ class TagsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tag_params
       params.require(:tag).permit(:name, :category)
+    end
+
+    # confirms the correct user
+    def correct_user
+      @tag ||= Tag.find(params[:id])
+      redirect_to(root_url, status: :see_other, notice: "Access denied") unless current_user && current_user.admin?
+    end
+
+    # confirms the correct user
+    def correct_create_user
+      redirect_to(root_url, status: :see_other, notice: "Access denied") unless current_user && current_user.admin?
     end
 end

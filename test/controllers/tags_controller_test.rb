@@ -2,7 +2,8 @@ require "test_helper"
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @tag = tags(:one)
+    @user = users(:archer)
+    @tag = tags(:tag_one)
   end
 
   test "should get index" do
@@ -10,39 +11,85 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_tag_url
-    assert_response :success
+  test "should redirect new when user is not logged in" do
+    get new_tag_path
+    assert_not flash.empty?
+    assert_redirected_to new_user_session_path
   end
 
-  test "should create tag" do
-    assert_difference("Tag.count") do
-      post tags_url, params: { tag: { category: @tag.category, name: @tag.name } }
+  test "should redirect create when not logged in" do
+    get new_tag_path
+    assert_no_difference "Tag.count" do
+      post tags_path, params: { tag: { name: "html", category: "general" } }
     end
-
-    assert_redirected_to tag_url(Tag.last)
+    assert_not flash.empty?
+    assert_redirected_to new_user_session_path
   end
 
-  test "should show tag" do
-    get tag_url(@tag)
-    assert_response :success
+  test "should redirect edit when not logged in" do
+    get edit_tag_path(@tag)
+    assert_not flash.empty?
+    assert_redirected_to new_user_session_url
   end
 
-  test "should get edit" do
-    get edit_tag_url(@tag)
-    assert_response :success
+  test "should redirect update when not logged in" do
+    @tag.name = "HTML"
+    @tag.category = "Blog"
+    patch tag_path(@tag), params: { tag: { name: "CSS", category: "Frontend" } }
+    assert_not flash.empty?
+    assert_redirected_to new_user_session_url
+    assert_equal @tag.name, "HTML"
+    assert_equal @tag.category, "Blog"
   end
 
-  test "should update tag" do
-    patch tag_url(@tag), params: { tag: { category: @tag.category, name: @tag.name } }
-    assert_redirected_to tag_url(@tag)
-  end
-
-  test "should destroy tag" do
-    assert_difference("Tag.count", -1) do
-      delete tag_url(@tag)
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'Tag.count' do
+      delete tag_path(@tag)
     end
+    assert_not flash.empty?
+    assert_redirected_to new_user_session_url
+  end
 
-    assert_redirected_to tags_url
+  test "should redirect new when not admin" do
+    sign_in @user
+    get new_tag_path
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect create when not admin" do
+    sign_in @user
+    assert_no_difference "Tag.count" do
+      post tags_path, params: { tag: { name: "html", category: "general" } }
+    end
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect edit when not admin" do
+    sign_in @user
+    get edit_tag_path(@tag)
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect update when not admin" do
+    sign_in @user
+    @tag.name = "HTML"
+    @tag.category = "Blog"
+    patch tag_path(@tag), params: { tag: { name: "CSS", category: "Frontend" } }
+    assert_not flash.empty?
+    assert_redirected_to root_url
+    assert_equal @tag.name, "HTML"
+    assert_equal @tag.category, "Blog"
+  end
+
+  test "should redirect destroy when not admin" do
+    sign_in @user
+    assert_no_difference 'Tag.count' do
+      delete tag_path(@tag)
+    end
+    assert_not flash.empty?
+    assert_redirected_to root_url
   end
 end
