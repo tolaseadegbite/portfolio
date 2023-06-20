@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_153104) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_20_204827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_153104) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.integer "comments_count", default: 0, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "likeable_type", null: false
@@ -63,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_153104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "likes_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["user_id", "created_at"], name: "index_projects_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
@@ -79,7 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_153104) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
-    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -102,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_153104) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "taggings", "tags"

@@ -38,11 +38,10 @@
         <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control" %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3" data-controller="tom-select">
         <h5><%= f.label :tags, class: "form-label" %></h5>
-        <%#= f.select :tag_ids, Tag.pluck(:name, :id), {},{ multiple: true} %>
-        <%#= f.text_field :tags, value: @project.tags.map(&:name).join(","), class: "form-control" %>
-        <%= f.select :tag_ids, Tag.where(category: "project").pluck(:name, :id), {}, { multiple: true } %>
+        <%#= f.select :tag_ids, Tag.where(category: "project").pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>
+        <%= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>
     </div>
 
     <div class="mb-3">

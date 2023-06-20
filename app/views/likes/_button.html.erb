@@ -1,9 +1,13 @@
-<p><%= @project.likes_count %></p>
-
 <% like = current_user.likes.find_by(likeable: likeable) %>
 
 <% if like.nil? %>  
-    <%= button_to("Like", likes_path,  class:"btn btn-success",  params:{ like: {likeable_id: likeable.id,  likeable_type: likeable.class.to_s}}) %>
+    <%= button_to(likes_path, class:"btn btn-light border fs-4",  params:{ like: {likeable_id: likeable.id,  likeable_type: likeable.class.to_s}}) do %>
+        <i class="bi bi-suit-heart"></i>
+        <%= @project.likes_count %>
+    <% end %>
 <% else %>  
-    <%= button_to("Unlike", like_path(like),  class:"btn btn-success",  method: :delete) %>
+    <%= button_to(like_path(like), class:"btn btn-light border fs-4", method: :delete) do %>
+        <i class="bi bi-suit-heart-fill"></i>
+        <%= @project.likes_count %>
+    <% end %>
 <% end %>

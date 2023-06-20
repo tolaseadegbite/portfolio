@@ -27,14 +27,9 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
     # redirect_to(root_url, status: :see_other, notice: "Access denied") unless current_user && current_user.admin?
 
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to tag_url(@tag), notice: "Tag was successfully created." }
-        format.json { render :show, status: :created, location: @tag }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+    if @tag.valid?
+      @tag.save
+      render json: @tag
     end
   end
 
@@ -69,7 +64,7 @@ class TagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tag_params
-      params.require(:tag).permit(:name, :category)
+      params.require(:tag).permit(:name)
     end
 
     # confirms the correct user

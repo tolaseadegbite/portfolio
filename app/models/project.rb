@@ -8,6 +8,8 @@ class Project < ApplicationRecord
   has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
 
+  has_many :comments, as: :commentable
+
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end

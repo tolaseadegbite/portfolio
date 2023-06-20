@@ -19,6 +19,7 @@ class LikeTest < ActiveSupport::TestCase
 
   test "likeable should be present" do
     @like.likeable = nil
+    # @like.save
     assert_not @like.valid?
   end
 

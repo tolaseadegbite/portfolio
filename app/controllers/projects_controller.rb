@@ -5,11 +5,6 @@ class ProjectsController < ApplicationController
 
     def index
         @projects = Project.includes(:user, image_attachment: :blob).paginate(page: params[:page]).order(created_at: :desc)
-        # @pagy, @projects = pagy_countless(@projects, items: 6)
-        # respond_to do |format|
-        #     format.html
-        #     format.turbo_stream
-        # end
     end
 
     def new
@@ -27,7 +22,8 @@ class ProjectsController < ApplicationController
     end
 
     def show
-        
+        @commentable = @project
+        @comment = Comment.new
     end
 
     def edit

@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   resources :usernames, only: [:new, :update]
-  resources :projects
+  resources :projects do
+    resources :comments
+  end
   resources :likes, only: [:create, :destroy]
-  # resources :tags
+  resources :users, only: :show
 end
