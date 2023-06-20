@@ -2,7 +2,7 @@ require "test_helper"
 
 class TagTest < ActiveSupport::TestCase
   def setup
-    @tag = Tag.new(name: "Testing", category: "Blog")  
+    @tag = Tag.new(name: "Testing")  
   end
 
   test "Tag is valid" do
@@ -11,11 +11,6 @@ class TagTest < ActiveSupport::TestCase
 
   test "name must be present" do
     @tag.name = "   "
-    assert_not @tag.valid?
-  end
-
-  test "category must be present" do
-    @tag.category = "   "
     assert_not @tag.valid?
   end
 
