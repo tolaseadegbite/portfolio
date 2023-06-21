@@ -39,35 +39,8 @@
             <p><%= link_to "See all", '#', class: "btn btn-light border" %></p>
         </div>
         <div class="row main-articles-col">
-            <%= link_to '#', class: "text-dark text-decoration-none" do %>
-                <div class="d-flex justify-content-between">
-                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
-                    <p class="single-post">February 15, 2023</p>
-                </div>
-            <% end %>
-            <%= link_to '#', class: "text-dark text-decoration-none" do %>
-                <div class="d-flex justify-content-between">
-                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
-                    <p class="single-post">February 15, 2023</p>
-                </div>
-            <% end %>
-            <%= link_to '#', class: "text-dark text-decoration-none" do %>
-                <div class="d-flex justify-content-between">
-                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
-                    <p class="single-post">February 15, 2023</p>
-                </div>
-            <% end %>
-            <%= link_to '#', class: "text-dark text-decoration-none" do %>
-                <div class="d-flex justify-content-between">
-                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
-                    <p class="single-post">February 15, 2023</p>
-                </div>
-            <% end %>
-            <%= link_to '#', class: "text-dark text-decoration-none" do %>
-                <div class="d-flex justify-content-between">
-                    <h5 class="single-post">Building a blog in Ruby on Rails</h5>
-                    <p class="single-post">February 15, 2023</p>
-                </div>
+            <% @posts.each do |post| %>
+                <%= render 'posts/post', post: post %>
             <% end %>
         </div>
     </section>

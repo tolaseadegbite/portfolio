@@ -1,0 +1,40 @@
+<%= form_with model: @post do |f| %>
+
+    <% if @post.errors.any? %>
+        <div id="error_explanation">
+            <div class="alert alert-danger">
+                The form contains <%= pluralize(@post.errors.count, "error") %>
+            </div>
+            <ul>
+                <% @post.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="mb-3">
+        <h5><%= f.label :title %></h5>
+        <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <h5><%= f.label :body %></h5>
+        <%= f.text_area :body, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <h5><%= f.label :image, class: "form-label" %></h5>
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png", class: "form-control" %>
+    </div>
+
+    <div class="mb-3" data-controller="tom-select">
+        <h5><%= f.label :tags, class: "form-label" %></h5>
+        <%#= f.select :tag_ids, Tag.where(category: "post").pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>
+        <%= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, id: "select-tags" } %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.submit "Submit post", class: "btn btn-dark rounded-pill" %>
+    </div>
+<% end %>

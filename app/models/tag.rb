@@ -4,8 +4,10 @@ class Tag < ApplicationRecord
     validates :name, presence: true, uniqueness: true
 	validates :name, length: {minimum: 2, maximum: 15}
     has_many :taggings, dependent: :destroy
-    has_many :projects, :through => :taggings, :source => :taggable,
-    :source_type => 'Project'
+    
+    has_many :projects, :through => :taggings, :source => :taggable, :source_type => 'Project'
+
+    has_many :posts, :through => :taggings, :source => :taggable, :source_type => 'Post'
 
     private
 

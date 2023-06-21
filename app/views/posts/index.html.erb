@@ -1,0 +1,10 @@
+<% provide(:title, "Blog") %>
+
+<div class="container" style="max-width: 750px;">
+    <section class="blog py-3 main-profile-section">
+        <h1 class="text-center">Software development tutorials</h1>
+        <div class="row main-articles-col mt-5">
+            <%= render @posts %>
+        </div>
+    </section>
+</div>
