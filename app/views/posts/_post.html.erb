@@ -1,5 +1,10 @@
-<div class="d-flex justify-content-between">
-    <h5 class="single-post"><%= link_to post.title, post, class: "text-dark text-decoration-none" %></h5>
-    <p class="single-post"><%= time_ago_in_words(post.created_at) %> ago</p>
-</div>
-<hr>
+<% if controller_name == 'profiles' %>
+    <li><h5 class="single-post"><%= link_to post.title, post, class: "text-dark" %></h5></li>
+
+<% else controller_name == 'profiles' %>
+    <div class="d-flex justify-content-between">
+        <h5 class="single-post"><%= link_to post.title, post, class: "text-dark" %></h5>
+        <p class="single-post"><%= time_ago_in_words(post.created_at) %> ago</p>
+    </div>
+    <hr>
+<% end %>

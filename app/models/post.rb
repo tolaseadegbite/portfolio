@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 10, maximum: 500 }
   validates :body, presence: true, length: { minimum: 500 }
 
-  belongs_to :user
+  belongs_to :user, counter_cache: :posts_count
   has_many :comments, as: :commentable
 
   has_many :likes, as: :likeable

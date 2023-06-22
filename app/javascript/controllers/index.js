@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ProfileFormController from "./profile_form_controller.js"
+application.register("profile-form", ProfileFormController)
+
 import RemovalsController from "./removals_controller.js"
 application.register("removals", RemovalsController)
 

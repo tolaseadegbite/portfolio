@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     before_action :correct_user, only: %i[ edit update destroy ]
 
     def index
-        @posts = Post.includes(:user, image_attachment: :blob).order(created_at: :desc)
+        @posts = Post.includes(:user, :comments, :likes, image_attachment: :blob).order(created_at: :desc)
     end
 
     def new
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
             flash[:notice] = "Post updated successfully"
             redirect_to @post
         else
-            rende :edit
+            render :edit
         end
     end
 

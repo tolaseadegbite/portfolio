@@ -9,4 +9,8 @@ module ApplicationHelper
             "#{page_title} | #{base_title}"
         end
     end
+
+    def nav_link_active?(link_name)
+        return "btn btn-dark" if action_name == link_name
+    end
 end

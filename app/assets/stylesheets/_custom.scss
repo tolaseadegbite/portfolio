@@ -91,3 +91,16 @@ li.active {
 .comment {
     border-left: 2px solid #80808078;
 }
+
+a {
+    text-decoration: none;
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+}
+
+.nav-link,.dropdown-item {
+    &:hover, &:focus {
+        text-decoration: none;
+    }
+}

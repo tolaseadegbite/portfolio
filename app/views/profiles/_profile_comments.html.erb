@@ -1,0 +1,23 @@
+<ul>
+    <% @comments.each do |comment| %>
+        <% if comment.commentable_type == 'Post' or comment.commentable_type == 'Project' %>
+            <li><h6>
+                <%= link_to comment.commentable, class: "text-dark" do %>
+                    <%= comment.commentable.title %>
+                    <span class="badge bg-info fw-normal">
+                        <%= comment.commentable_type %>
+                    </span>
+                <% end %>
+            </h6></li>
+        <% elsif comment.parent.present? %>
+            <%= comment.commentable.body %>
+        <% end %>
+        <% if comment.parent.present? %>
+            <div class="p-3 border rounded">
+                <p class="m-0"><i> Parent comment by:</i> <%= link_to comment.parent.user.username, profile_path(comment.parent.user.username), class: "text-dark" %></p>
+                <p class="m-0"><%= comment.parent.body %></p>
+            </div>
+        <% end %>
+        <p><%= comment.body %></p>
+    <% end %>
+</ul>

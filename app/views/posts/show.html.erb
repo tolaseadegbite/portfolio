@@ -53,14 +53,14 @@
         </div>
         <div class="py-2 text-center">
             <h5 class="mt-4">Published by:</h5>
-            <%= link_to '#', class:"text-dark text-decoration-none" do %>
-                <i class="bi bi-person-circle" style="font-size: 50px;"></i>
+            <%= link_to profile_path(@post.user.username), class:"text-dark text-decoration-none" do %>
+                <%= gravatar_for @post.user %>
             <% end %>
         </div>
     </div>
 
     <section class="comments mt-4 pb-3 border p-3" style="font-size: 15px;">
-        <h2 class="text-center">Comments (<%= @post.comments_count %>)</h2>
+        <h3 class="text-center">Comments (<%= @post.comments_count %>)</h3>
         <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
         <h6 class="pt-3">New comment:</h6>
         <div id="comment-form" class="comment-form mt-2">

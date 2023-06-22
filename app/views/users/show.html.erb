@@ -1,0 +1,23 @@
+<% provide(:title, @user.username) %>
+<div class="container py-5" style="max-width: 800px">
+    <div class="row">
+        <aside class="col-md-4">
+            <section>
+            <h1>
+                <%= gravatar_for @user %>
+                <%= @user.username %>
+            </h1>
+            </section>
+            <section class="stats">
+            <%#= render 'shared/stats' %>
+            </section>
+        </aside>
+        <div class="col-md-8">
+            <% if @user.posts.any? %>
+            <h3>posts (<%= @user.posts_count %>)</h3>
+            <hr>
+                <%= render @posts %>
+            <% end %>
+        </div>
+    </div>
+</div>

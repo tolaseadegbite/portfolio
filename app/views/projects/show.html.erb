@@ -34,7 +34,7 @@
                     <%= link_to tag.name, tag, class: "btn btn-light btn-sm border text-sm" %>
                 <% end %>
             </div>
-            <p class="text-muted">Posted by <%= link_to @project.user.username, '#', class: "text-muted text-decoration-none" %>, <%= time_ago_in_words(@project.created_at) %>
+            <p class="text-muted">Posted by <%= link_to @project.user.username, profile_path(@project.user.username), class: "text-muted text-decoration-none" %>, <%= time_ago_in_words(@project.created_at) %>
             <div class="project-img mb-3">
                 <% if @project.image.attached? %>
                     <%= image_tag @project.image, width: "500px", class: "img-fluid" %>

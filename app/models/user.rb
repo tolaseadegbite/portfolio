@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # before_save :downcase_username
+  before_save :downcase_username
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
