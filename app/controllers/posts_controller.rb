@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :find_post, only: [:edit, :update, :destroy]
+    before_action :find_post, only: [:show, :edit, :update, :destroy]
+    before_action :correct_user, only: %i[ edit update destroy ]
 
     def index
         @posts = Post.includes(:user, image_attachment: :blob).order(created_at: :desc)
@@ -21,7 +22,6 @@ class PostsController < ApplicationController
     end
 
     def show
-        @post = Post.find(params[:id])
         @commentable = @post
         @comment = Comment.new
     end
@@ -46,6 +46,12 @@ class PostsController < ApplicationController
     end
 
     def find_post
-        @post ||= current_user.posts.find(params[:id]) 
+        @post ||= Post.find(params[:id]) 
+    end
+
+    # confirms the correct user
+    def correct_user
+        @post ||= Post.find(params[:id])
+        redirect_to(posts_url, status: :see_other, notice: "Access denied") unless current_user.admin?
     end
 end

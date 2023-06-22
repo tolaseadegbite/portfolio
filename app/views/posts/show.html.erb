@@ -58,4 +58,13 @@
             <% end %>
         </div>
     </div>
+
+    <section class="comments mt-4 pb-3 border p-3" style="font-size: 15px;">
+        <h2 class="text-center">Comments (<%= @post.comments_count %>)</h2>
+        <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+        <h6 class="pt-3">New comment:</h6>
+        <div id="comment-form" class="comment-form mt-2">
+            <%= render 'comments/form', commentable: @commentable, parent: nil %>
+        </div>
+    </section>
 </div>

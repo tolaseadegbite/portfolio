@@ -2,7 +2,7 @@
     <div class="mb-3">
         <p class="m-0 fw-bold"><small><span class="text-muted">posted by: </span><%= link_to comment.user.username, user_path(comment.user), class: "text-dark" %>, <%= time_ago_in_words(comment.created_at) %> ago</small></p>
         <p class="m-0"><%= comment.body %></p>
-
+            <%= link_to 'edit', '#', class: "text-decoration-none text-dark m-0" %> |
             <%= link_to "delete", [@commentable, comment], data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-dark m-0" %> |
             <%= link_to "reply", '#', data: { turbo_frame: "comment_form" }, class: "text-dark text-decoration-none m-0 comment-form-display" %>
 

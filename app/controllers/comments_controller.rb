@@ -36,6 +36,8 @@ class CommentsController < ApplicationController
             @commentable = Project.find(params[:project_id])
         elsif params[:comment_id].present?
             @commentable = Comment.find(params[:comment_id])
+        elsif params[:post_id].present?
+            @commentable = Post.find(params[:post_id])
         end
     end
 end
