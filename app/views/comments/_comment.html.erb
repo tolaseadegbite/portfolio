@@ -1,22 +1,25 @@
-<div class="comment ps-3">
-    <div class="mb-3">
-        <p class="m-0 fw-bold"><small><span class="text-muted">posted by: </span><%= link_to comment.user.username, profile_path(comment.user.username), class: "text-dark" %>, <%= time_ago_in_words(comment.created_at) %> ago</small></p>
-        <p class="m-0"><%= comment.body %></p>
-            <%= link_to 'edit', '#', class: "text-decoration-none text-dark m-0" %> |
-            <%= link_to "delete", [@commentable, comment], data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-dark m-0" %> |
-            <%= link_to "reply", '#', data: { turbo_frame: "comment_form" }, class: "text-dark text-decoration-none m-0 comment-form-display" %>
+<%= turbo_frame_tag comment do %>
 
-        <div class="sub-comment-form">
-            <%= render partial: 'comments/form', locals: { commentable: @commentable, parent: comment } %>
+    <div class="comment ps-3">
+        <div class="mb-3">
+            <p class="m-0 fw-bold"><small><span class="text-muted">posted by: </span><%= link_to comment.user.username, profile_path(comment.user.username), class: "text-dark" %>, <%= time_ago_in_words(comment.created_at) %> ago</small></p>
+            <p class="m-0"><%= comment.body %></p>
+            <%= link_to 'edit', edit_post_comment_path(@post, comment), class: "text-decoration-none text-dark m-0" if comment.commentable_type == 'Post' %> |
+            <%= link_to "delete", [@commentable, comment], data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-dark m-0" %> |
+            <%= link_to "reply", '#', class: "text-dark text-decoration-none m-0 comment-form-display" %>
+
+            <div class="sub-comment-form">
+                <%= render partial: 'comments/form', locals: { commentable: @commentable, parent: comment } %>
+            </div>
+        </div>
+
+        <%#= comment.comments_count %>
+
+        <div class="sub-comments">
+            <%= render comment.comments.order(id: :desc) %>
         </div>
     </div>
-
-    <%#= comment.comments_count %>
-
-    <div class="sub-comments">
-        <%= render comment.comments.order(id: :desc) %>
-    </div>
-</div>
+<% end %>
 
 <script>
     document.querySelectorAll('.comment-form-display').forEach((el) => {

@@ -14,6 +14,8 @@ class Post < ApplicationRecord
     attachable.variant :display, resize_to_limit: [500, 500]
   end
 
+  has_rich_text :body
+
   validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],
                                       message: "must be a valid image format" },
                       size: { less_than: 5.megabytes,

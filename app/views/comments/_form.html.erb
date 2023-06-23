@@ -1,27 +1,33 @@
-<%= form_with(model: [commentable, @comment]) do |f| %>
 
-    <% if @comment.errors.any? %>
-        <div id="error_explanation">
-            <div class="alert alert-danger">
-                The form contains <%= pluralize(@comment.errors.count, "error") %>
+    <%= form_with(model: [commentable, @comment]) do |f| %>
+
+        <% if @comment.errors.any? %>
+            <div id="error_explanation">
+                <div class="alert alert-danger">
+                    The form contains <%= pluralize(@comment.errors.count, "error") %>
+                </div>
+                <ul>
+                    <% @comment.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
             </div>
-            <ul>
-                <% @comment.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-            </ul>
+        <% end %>
+
+        <% if !parent.nil? %>
+            <%= f.hidden_field :parent_id, value: parent.id %>
+        <% end %>
+
+        <div class="mb-3">
+            <%= f.text_area :body, placeholder: "Type your comment", class: "form-control", rows: "5" %>
+        </div>
+
+        <div class="mb-3">
+            <% if parent.nil? %>
+                <%= f.submit "Submit comment", class: "btn btn-dark" %>
+            <% else %>
+                <%= f.submit "Reply comment", class: "btn btn-dark" %>
+                <%= link_to "cancel", [commentable, @comment], class: "btn btn-light border text-decoration-none" %>
+            <% end %>
         </div>
     <% end %>
-
-    <% if !parent.nil? %>
-        <%= f.hidden_field :parent_id, value: parent.id %>
-    <% end %>
-
-    <div class="mb-3">
-        <%= f.text_area :body, placeholder: "Type your comment", class: "form-control", rows: "5" %>
-    </div>
-
-    <div class="mb-3">
-        <%= f.submit "Submit comment", class: "btn btn-dark" %>
-    </div>
-<% end %>

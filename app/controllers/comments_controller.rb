@@ -8,7 +8,10 @@ class CommentsController < ApplicationController
         @comment.user = current_user
         flash[:notice] = "Comment successfully created"
         if @comment.save
-            redirect_to @commentable
+            respond_to do |format|
+                format.html { redirect_to @commentable }
+                # format.turbo_stream
+            end
         else
             flash[:notice] = @comment.errors.full_messages.join(", ")
             redirect_to @commentable

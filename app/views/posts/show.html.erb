@@ -34,9 +34,16 @@
             <h5 class="text-sm text-secondary mb-2"><small><%= time_ago_in_words(@post.created_at) %> ago</small></h5>
             <h1><%= @post.title %></h1>
             
+        <div class="py-2 text-center">
+            <h5 class="mt-4">Published by:</h5>
+            <%= link_to profile_path(@post.user.username), class:"text-dark text-decoration-none" do %>
+                <%= gravatar_for @post.user %>
+            <% end %>
+        </div>
+            
             <div class="post-tags mt-3">
                 <% @post.tags.each do |tag| %>
-                    <%= link_to tag.name, tag, class: "btn btn-light btn-sm border text-sm" %>
+                    <%= link_to tag.name, tag, class: "btn btn-light btn-sm border text-sm text-decoration-none" %>
                 <% end %>
             </div>
             <div class="post-img my-5 img-fluid">
@@ -47,21 +54,17 @@
                 <% end %>
             </div>
         </div>
-        <p class="text-block"><%= simple_format(@post.body) %></p>
+        <p class="trix-content"><%= @post.body %></p>
         <div class="text-center">
             <%= render partial: "posts/button", locals: { likeable: @post } %>
-        </div>
-        <div class="py-2 text-center">
-            <h5 class="mt-4">Published by:</h5>
-            <%= link_to profile_path(@post.user.username), class:"text-dark text-decoration-none" do %>
-                <%= gravatar_for @post.user %>
-            <% end %>
         </div>
     </div>
 
     <section class="comments mt-4 pb-3 border p-3" style="font-size: 15px;">
         <h3 class="text-center">Comments (<%= @post.comments_count %>)</h3>
-        <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+        <%= turbo_frame_tag "comments" do %>
+            <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+        <% end %>
         <h6 class="pt-3">New comment:</h6>
         <div id="comment-form" class="comment-form mt-2">
             <%= render 'comments/form', commentable: @commentable, parent: nil %>
