@@ -14,6 +14,8 @@ class Project < ApplicationRecord
     attachable.variant :display, resize_to_limit: [500, 500]
   end
 
+  has_rich_text :description
+
   validates :title, :description, :github_link, presence: true
 
   validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],

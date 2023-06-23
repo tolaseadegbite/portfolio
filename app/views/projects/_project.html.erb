@@ -18,7 +18,7 @@
                     <%= link_to tag.name, tag, class: "btn btn-light btn-sm text-sm border" %>
                 <% end %>
             </div>
-            <p class="project-copy text-sm text-justify"><%= project.description.truncate(100) %></p>
+            <p class="project-copy text-sm text-justify"><%= project.description.to_plain_text.truncate(100) %></p>
             <div class="mt-3">
                 <% if project.preview_link.present? %>
                     <%= link_to project.preview_link, class: "btn btn-light border-dark me-2 btn-sm" do %>
