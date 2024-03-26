@@ -21,7 +21,9 @@ class ProjectsEditTest < ActionDispatch::IntegrationTest
     get edit_project_path(@project)
     assert_template 'projects/edit'
     title = "A new title"
-    patch project_path(@project), params: { project: { title: title } }
+    description = "A cool project"
+    github_link = "www.link.com"
+    patch project_path(@project), params: { project: { title: title, description: description, github_link: github_link } }
     assert_not flash.empty?
     assert_redirected_to @project
     @project.reload

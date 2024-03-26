@@ -19,11 +19,9 @@ class TagEditTest < ActionDispatch::IntegrationTest
     get edit_tag_path(@tag)
     assert_template 'tags/edit'
     @tag.name = "Tailwind"
-    @tag.category = "CSS"
-    patch tag_path(@tag), params: { tag: { name: @tag.name, category: @tag.category } }
+    patch tag_path(@tag), params: { tag: { name: @tag.name } }
     assert_redirected_to @tag
     @tag.reload
-    assert_equal @tag.name, 'Tailwind'
-    assert_equal @tag.category, 'CSS'
+    assert_equal @tag.name, 'Tailwind'.downcase
   end
 end

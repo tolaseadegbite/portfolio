@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:show, :profile_comments]
     before_action :correct_user, only: [:update]
 
     def show

@@ -14,7 +14,6 @@ class TagsTest < ApplicationSystemTestCase
     visit tags_url
     click_on "New tag"
 
-    fill_in "Category", with: @tag.category
     fill_in "Name", with: @tag.name
     click_on "Create Tag"
 
@@ -26,7 +25,6 @@ class TagsTest < ApplicationSystemTestCase
     visit tag_url(@tag)
     click_on "Edit this tag", match: :first
 
-    fill_in "Category", with: @tag.category
     fill_in "Name", with: @tag.name
     click_on "Update Tag"
 

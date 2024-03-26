@@ -10,7 +10,7 @@ tau_manifesto:
   description: "Check out the @tauday site by @mhartl: https://tauday.com"
   github_link: "https://example.com"
   created_at: <%= 3.years.ago %>
-  user: tolase
+  user: archer
 
 cat_video:
   title: "An awesome project"
@@ -27,7 +27,7 @@ most_recent:
   user: tolase
 
 <% 30.times do |n| %>
-micropost_<%= n %>:
+project_<%= n %>:
   title: <%= Faker::Lorem.sentence(word_count: 5) %>
   description: <%= Faker::Lorem.sentence(word_count: 100) %>
   github_link: "https://example.com"
@@ -35,22 +35,22 @@ micropost_<%= n %>:
   user: tolase
 <% end %>
 
-ants:
-  description: "Oh, is that what you want? Because that's how you get ants!"
-  created_at: <%= 2.years.ago %>
-  user: archer
+# ants:
+#   description: "Oh, is that what you want? Because that's how you get ants!"
+#   created_at: <%= 2.years.ago %>
+#   user: archer
 
-zone:
-  description: "Danger zone!"
-  created_at: <%= 3.days.ago %>
-  user: archer
+# zone:
+#   description: "Danger zone!"
+#   created_at: <%= 3.days.ago %>
+#   user: archer
 
-tone:
-  description: "I'm sorry. Your words made sense, but your sarcastic tone did not."
-  created_at: <%= 10.minutes.ago %>
-  user: lana
+# tone:
+#   description: "I'm sorry. Your words made sense, but your sarcastic tone did not."
+#   created_at: <%= 10.minutes.ago %>
+#   user: lana
 
-van:
-  description: "Dude, this van's, like, rolling probable cause."
-  created_at: <%= 4.hours.ago %>
-  user: lana
+# van:
+#   description: "Dude, this van's, like, rolling probable cause."
+#   created_at: <%= 4.hours.ago %>
+#   user: lana

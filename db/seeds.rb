@@ -27,11 +27,11 @@ User.create!(display_name:  "Tolase Kelvin",
 end
 
 # Generate projects for a subset of users.
-user = User.first
-50.times do
-  title = Faker::Lorem.sentence(word_count: 4)
-  description = Faker::Lorem.sentence(word_count: 100)
-  github_link = Faker::Internet.url
-  preview_link = Faker::Internet.url
-  user.projects.create!(title: title, description: description, github_link: github_link, preview_link: preview_link)
-end
+# user = User.first
+# 50.times do
+#   title = Faker::Lorem.sentence(word_count: 4)
+#   description = Faker::Lorem.sentence(word_count: 100)
+#   github_link = Faker::Internet.url
+#   preview_link = Faker::Internet.url
+#   user.projects.create!(title: title, description: description, github_link: github_link, preview_link: preview_link)
+# end

@@ -24,7 +24,7 @@ footer {
 p {
     // line-height: 1.4;
     font-family: 'Open Sans', sans-serif;
-    // font-size: 15px;
+    font-size: 17px !important;
 }
 
 // .text-block {
@@ -37,6 +37,10 @@ h1,h2,h3,h4,h5,h6 {
 
 h1 {
     font-size: 45px !important;
+}
+
+h2 {
+    font-size: 37px !important;
 }
 
 .home-callout > h1 > span {
@@ -97,6 +101,10 @@ a {
     &:hover, &:focus {
         text-decoration: underline;
     }
+}
+
+.nav-link {
+    margin-left: 10px;
 }
 
 .nav-link,.dropdown-item {

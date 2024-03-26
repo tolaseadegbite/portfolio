@@ -30,6 +30,9 @@ class TagsController < ApplicationController
     if @tag.valid?
       @tag.save
       render json: @tag
+    else
+      flash[:notice] = @tag.errors.full_messages.to_sentence
+      redirect_back(fallback_location: root_path, status: :unprocessable_entity)
     end
   end
 

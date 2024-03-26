@@ -4,7 +4,7 @@ class LikeTest < ActiveSupport::TestCase
   def setup
     @user = users(:tolase)
     @project = projects(:orange)
-    @like = @user.likes.build(likeable: @project, likeable_type: 'Project')
+    @like = @user.likes.build(likeable: @project)
     sign_in @user
   end
 

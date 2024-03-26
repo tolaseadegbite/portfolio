@@ -4,7 +4,8 @@ class LikesController < ApplicationController
     def create
         @like = current_user.likes.new(like_params)
         if @like.save
-            redirect_back(fallback_location: root_path)
+            likeable = @like.likeable
+            redirect_to likeable
         else
             flash[:notice] = @like.errors.full_messages.to_sentence
         end
@@ -14,7 +15,7 @@ class LikesController < ApplicationController
         @like = current_user.likes.find(params[:id])
         likeable = @like.likeable
         @like.destroy
-        redirect_back(fallback_location: root_path)
+        redirect_to likeable
     end
 
     private

@@ -34,12 +34,10 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
 
   test "should redirect update when not logged in" do
     @tag.name = "HTML"
-    @tag.category = "Blog"
-    patch tag_path(@tag), params: { tag: { name: "CSS", category: "Frontend" } }
+    patch tag_path(@tag), params: { tag: { name: "CSS" } }
     assert_not flash.empty?
     assert_redirected_to new_user_session_url
     assert_equal @tag.name, "HTML"
-    assert_equal @tag.category, "Blog"
   end
 
   test "should redirect destroy when not logged in" do
@@ -76,12 +74,10 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   test "should redirect update when not admin" do
     sign_in @user
     @tag.name = "HTML"
-    @tag.category = "Blog"
-    patch tag_path(@tag), params: { tag: { name: "CSS", category: "Frontend" } }
+    patch tag_path(@tag), params: { tag: { name: "CSS" } }
     assert_not flash.empty?
     assert_redirected_to root_url
     assert_equal @tag.name, "HTML"
-    assert_equal @tag.category, "Blog"
   end
 
   test "should redirect destroy when not admin" do
